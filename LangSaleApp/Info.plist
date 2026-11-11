@@ -18,20 +18,20 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_langsale-tx._tcp</string>
+		<string>_langsale-tx._udp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>LangSale shares translated text with other devices you pair with.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LangSale listens to the customer's speech and translates it on this device. Audio is never uploaded.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>LangSale listens to the customer's speech and translates it on this device. Audio is never uploaded.</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>LangSale shares translated text with other devices you pair with.</string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_langsale-tx._tcp</string>
-		<string>_langsale-tx._udp</string>
 	</array>
 </dict>
 </plist>

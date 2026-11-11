@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		127CB4C71FABA62A78208D65 /* SpeechModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6896A7A6BF9E799C98A7B4C /* SpeechModelStore.swift */; };
 		32935BE8BF3F408A9FD42D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC27855C27A52DC8E9D0921 /* Assets.xcassets */; };
-		698346FA388B42744A257537 /* UnconfiguredModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EF895B32CAE0055B06868F /* UnconfiguredModels.swift */; };
+		700FF2A35034EC018D4AF987 /* WhisperKitRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */; };
+		79CA7F9D6062A16EF2AF87B3 /* whisper-base.manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = A38F71036BC9FCF55057546E /* whisper-base.manifest.json */; };
 		A238BCEF15244DFEF60D8FA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612A87C44C46DB8CF0C8BF4D /* ContentView.swift */; };
 		BFE365A7CCABE6A4F0D1AF28 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175B236CEE0CA61AE77EE4A /* AppModel.swift */; };
 		CB84EBB4F8328F95E45E92D3 /* LangSaleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451843A55EDB60114455072 /* LangSaleApp.swift */; };
 		E9767FAD6595FC5600221546 /* LangSaleCore in Frameworks */ = {isa = PBXBuildFile; productRef = 39DE9E3BF9A982C7717548EE /* LangSaleCore */; };
+		EFBD98D6624E578B281AD169 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7A96D144CB47C8CDDF102F4F /* WhisperKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +23,12 @@
 		1FB79C9289B18CA223C0DAF7 /* LangSale.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LangSale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175B236CEE0CA61AE77EE4A /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		3FC27855C27A52DC8E9D0921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitRecognizer.swift; sourceTree = "<group>"; };
 		612A87C44C46DB8CF0C8BF4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8451843A55EDB60114455072 /* LangSaleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSaleApp.swift; sourceTree = "<group>"; };
-		95EF895B32CAE0055B06868F /* UnconfiguredModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfiguredModels.swift; sourceTree = "<group>"; };
+		A38F71036BC9FCF55057546E /* whisper-base.manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "whisper-base.manifest.json"; sourceTree = "<group>"; };
 		B3D8A814B3DC0892F0F41B72 /* LangSale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LangSale; path = .; sourceTree = SOURCE_ROOT; };
+		B6896A7A6BF9E799C98A7B4C /* SpeechModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechModelStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9767FAD6595FC5600221546 /* LangSaleCore in Frameworks */,
+				EFBD98D6624E578B281AD169 /* WhisperKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +60,9 @@
 				612A87C44C46DB8CF0C8BF4D /* ContentView.swift */,
 				1804A76AD62450010624F5E5 /* Info.plist */,
 				8451843A55EDB60114455072 /* LangSaleApp.swift */,
-				95EF895B32CAE0055B06868F /* UnconfiguredModels.swift */,
+				B6896A7A6BF9E799C98A7B4C /* SpeechModelStore.swift */,
+				4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */,
+				F1A6CF66E9A5074144D0BAF6 /* Resources */,
 			);
 			path = LangSaleApp;
 			sourceTree = "<group>";
@@ -76,6 +84,14 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		F1A6CF66E9A5074144D0BAF6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A38F71036BC9FCF55057546E /* whisper-base.manifest.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -94,6 +110,7 @@
 			name = LangSale;
 			packageProductDependencies = (
 				39DE9E3BF9A982C7717548EE /* LangSaleCore */,
+				7A96D144CB47C8CDDF102F4F /* WhisperKit */,
 			);
 			productName = LangSale;
 			productReference = 1FB79C9289B18CA223C0DAF7 /* LangSale.app */;
@@ -124,6 +141,7 @@
 			mainGroup = 8D9C874F4DCD5EE050D7A445;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				FB405F40ADCEB91A628127ED /* XCRemoteSwiftPackageReference "argmax-oss-swift" */,
 				4D156190FC2E981D6807228C /* XCLocalSwiftPackageReference "." */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -142,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32935BE8BF3F408A9FD42D03 /* Assets.xcassets in Resources */,
+				79CA7F9D6062A16EF2AF87B3 /* whisper-base.manifest.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +174,8 @@
 				BFE365A7CCABE6A4F0D1AF28 /* AppModel.swift in Sources */,
 				A238BCEF15244DFEF60D8FA3 /* ContentView.swift in Sources */,
 				CB84EBB4F8328F95E45E92D3 /* LangSaleApp.swift in Sources */,
-				698346FA388B42744A257537 /* UnconfiguredModels.swift in Sources */,
+				127CB4C71FABA62A78208D65 /* SpeechModelStore.swift in Sources */,
+				700FF2A35034EC018D4AF987 /* WhisperKitRecognizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,10 +379,26 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		FB405F40ADCEB91A628127ED /* XCRemoteSwiftPackageReference "argmax-oss-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/argmax-oss-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		39DE9E3BF9A982C7717548EE /* LangSaleCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LangSaleCore;
+		};
+		7A96D144CB47C8CDDF102F4F /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB405F40ADCEB91A628127ED /* XCRemoteSwiftPackageReference "argmax-oss-swift" */;
+			productName = WhisperKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

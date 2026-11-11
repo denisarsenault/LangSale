@@ -79,7 +79,8 @@ final class DownloadDelegate: NSObject, URLSessionDownloadDelegate, @unchecked S
         guard let name = downloadTask.taskDescription else { return }
         let destination = destinationDirectory.appendingPathComponent(name)
         do {
-            try FileManager.default.createDirectory(at: destinationDirectory,
+            // File names may contain subdirectories (e.g. "model.mlmodelc/weights/weight.bin").
+            try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(),
                                                     withIntermediateDirectories: true)
             try? FileManager.default.removeItem(at: destination)
             try FileManager.default.moveItem(at: location, to: destination)
@@ -105,6 +106,9 @@ public actor ModelDownloader {
     public static let sessionIdentifier = "com.langsale.models"
 
     public private(set) var manifest: ModelManifest
+    /// Emits the manifest after every state change, so the UI can show progress and completion.
+    public nonisolated let updates: AsyncStream<ModelManifest>
+    private let updateContinuation: AsyncStream<ModelManifest>.Continuation
     private let store: ManifestStore
     private let modelsDirectory: URL
     private let session: URLSession
@@ -121,6 +125,9 @@ public actor ModelDownloader {
 
         let stream = AsyncStream.makeStream(of: DownloadEvent.self)
         events = stream.stream
+        let updateStream = AsyncStream.makeStream(of: ModelManifest.self)
+        updates = updateStream.stream
+        updateContinuation = updateStream.continuation
         let delegate = DownloadDelegate(destinationDirectory: modelsDirectory) {
             stream.continuation.yield($0)
         }
@@ -152,7 +159,8 @@ public actor ModelDownloader {
         if satisfied { await resumeIncomplete() }
     }
 
-    private func resumeIncomplete() async {
+    /// Restarts every incomplete file that has no active task. Safe to call repeatedly.
+    public func resumeIncomplete() async {
         let active = Set(await session.allTasks.compactMap(\.taskDescription))
         for entry in manifest.entries where entry.status != .completed && !active.contains(entry.fileName) {
             startTask(for: entry)
@@ -191,5 +199,6 @@ public actor ModelDownloader {
         body(&manifest.entries[index])
         // Persistence failure leaves the in-memory state correct; the next change retries the save.
         try? store.save(manifest)
+        updateContinuation.yield(manifest)
     }
 }

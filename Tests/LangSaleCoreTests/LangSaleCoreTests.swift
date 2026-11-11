@@ -46,6 +46,15 @@ struct EnergyVADTests {
     private let silence = [Float](repeating: 0, count: 512)
     private let loud = [Float](repeating: 0.5, count: 512)
 
+    /// A detector that has finished its startup calibration in a silent room.
+    private func calibrated(_ configuration: EnergyVAD.Configuration = .init()) -> EnergyVAD {
+        var vad = EnergyVAD(configuration: configuration)
+        for _ in 0..<configuration.calibrationChunks {
+            _ = vad.process(silence)
+        }
+        return vad
+    }
+
     @Test func silenceProducesNoEvents() {
         var vad = EnergyVAD()
         for _ in 0..<50 {
@@ -55,7 +64,7 @@ struct EnergyVADTests {
     }
 
     @Test func speechStartsAfterMinimumVoicedChunks() {
-        var vad = EnergyVAD()
+        var vad = calibrated()
         #expect(vad.process(loud) == nil)
         #expect(vad.process(loud) == nil)
         #expect(vad.process(loud) == .speechStarted)
@@ -63,16 +72,46 @@ struct EnergyVADTests {
     }
 
     @Test func speechEndsOnlyAfterHangover() {
-        var vad = EnergyVAD(configuration: {
-            var c = EnergyVAD.Configuration()
-            c.minVoicedChunks = 1
-            c.hangoverChunks = 3
-            return c
-        }())
+        var configuration = EnergyVAD.Configuration()
+        configuration.minVoicedChunks = 1
+        configuration.hangoverChunks = 3
+        var vad = calibrated(configuration)
         _ = vad.process(loud)
         #expect(vad.process(silence) == nil)
         #expect(vad.process(silence) == nil)
         #expect(vad.process(silence) == .speechEnded)
+        #expect(vad.isSpeaking == false)
+    }
+
+    @Test func steadyBackgroundNoiseIsNotSpeech() {
+        // Louder than the old fixed threshold; a fan or a busy shop floor.
+        let noise = [Float](repeating: 0.03, count: 512)
+        var vad = EnergyVAD()
+        for _ in 0..<100 {
+            #expect(vad.process(noise) == nil)
+        }
+        #expect(vad.isSpeaking == false)
+
+        // Speech that stands out from the noise still triggers.
+        _ = vad.process(loud)
+        _ = vad.process(loud)
+        #expect(vad.process(loud) == .speechStarted)
+    }
+
+    @Test func quietSpeechTriggersInQuietRoom() {
+        // Below the old fixed threshold of 0.015, as from a quiet microphone in measurement mode.
+        let quiet = [Float](repeating: 0.01, count: 512)
+        var vad = calibrated()
+        _ = vad.process(quiet)
+        _ = vad.process(quiet)
+        #expect(vad.process(quiet) == .speechStarted)
+    }
+
+    @Test func calibrationReportsNothing() {
+        var vad = EnergyVAD()
+        for _ in 0..<EnergyVAD.Configuration().calibrationChunks {
+            #expect(vad.process(loud) == nil)
+        }
         #expect(vad.isSpeaking == false)
     }
 }
@@ -171,6 +210,17 @@ struct TranslationPipelineTests {
         #expect(result?.source == .spanish)
     }
 
+    @Test func withoutTranslatorRecognizedTextIsUsedAsTranslation() async throws {
+        let pipeline = TranslationPipeline(
+            recognizer: FakeRecognizer(text: "hello there", footprint: 100),
+            translator: nil,
+            memory: FixedMemory(bytes: Int.max),
+            pair: pair)
+        let result = try await pipeline.process(segment: [0.1])
+        #expect(result?.translated == "hello there")
+        #expect(result?.original == "hello there")
+    }
+
     @Test func emptyRecognitionYieldsNoTranscript() async throws {
         let pipeline = TranslationPipeline(
             recognizer: FakeRecognizer(text: "   ", footprint: 100),
@@ -178,6 +228,30 @@ struct TranslationPipelineTests {
             memory: FixedMemory(bytes: Int.max),
             pair: pair)
         #expect(try await pipeline.process(segment: [0.1]) == nil)
+    }
+
+    @Test func prepareLoadsModelsUpFront() async throws {
+        let recognizer = FakeRecognizer(text: "hola", footprint: 100)
+        let translator = FakeTranslator()
+        let pipeline = TranslationPipeline(
+            recognizer: recognizer,
+            translator: translator,
+            memory: FixedMemory(bytes: Int.max),
+            pair: pair)
+        try await pipeline.prepare()
+        #expect(await recognizer.isLoaded)
+        #expect(await translator.isLoaded)
+    }
+
+    @Test func prepareRefusesWithoutHeadroom() async {
+        let pipeline = TranslationPipeline(
+            recognizer: FakeRecognizer(text: "hola", footprint: 100),
+            translator: nil,
+            memory: FixedMemory(bytes: 1_000),
+            pair: pair)
+        await #expect(throws: ModelError.self) {
+            try await pipeline.prepare()
+        }
     }
 
     @Test func refusesToLoadWithoutHeadroom() async {

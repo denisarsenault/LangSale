@@ -16,9 +16,13 @@ public actor SpeechSession {
     private let pipeline: TranslationPipeline
     private var vad: EnergyVAD
     private var segment: [Float] = []
+    /// The most recent unvoiced chunks, prepended to a segment when speech starts so the
+    /// detector's onset latency does not clip the first syllable.
+    private var preroll: [[Float]] = []
     private var worker: Task<Void, Never>?
 
     private let chunkSize = 512
+    private let prerollChunks = 8
     private let maxSegmentSamples = 16_000 * 30
     private let minSegmentSamples = 8_000
 
@@ -56,7 +60,16 @@ public actor SpeechSession {
             let chunk = Array(scratch[0..<n])
             let event = vad.process(chunk)
             if vad.isSpeaking {
+                if event == .speechStarted {
+                    segment.append(contentsOf: preroll.joined())
+                    preroll.removeAll(keepingCapacity: true)
+                }
                 segment.append(contentsOf: chunk)
+            } else {
+                preroll.append(chunk)
+                if preroll.count > prerollChunks {
+                    preroll.removeFirst()
+                }
             }
             if event == .speechEnded || segment.count >= maxSegmentSamples {
                 await flush()

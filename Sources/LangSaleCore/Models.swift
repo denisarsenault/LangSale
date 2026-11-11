@@ -1,3 +1,4 @@
+import Foundation
 #if os(iOS)
 import os
 #endif
@@ -37,9 +38,35 @@ public struct SystemMemoryProbe: MemoryProbe {
 
     public func availableBytes() -> Int {
         #if os(iOS)
-        return Int(os_proc_available_memory())
-        #else
-        return Int.max
+        // `os_proc_available_memory` returns 0 when the process has no jetsam limit
+        // (notably in the Simulator) or when the query fails. Zero would wrongly block
+        // every model load, so fall back to an estimate in that case.
+        let reported = Int(os_proc_available_memory())
+        if reported > 0 {
+            return reported
+        }
         #endif
+        return Self.estimatedAvailableBytes()
+    }
+
+    /// Physical memory minus this process's current footprint. Used when the system
+    /// does not report a per-process limit.
+    private static func estimatedAvailableBytes() -> Int {
+        let physical = Int(clamping: ProcessInfo.processInfo.physicalMemory)
+        return max(physical - residentFootprintBytes(), 0)
+    }
+
+    /// The process's physical footprint as reported by Mach, or 0 if the query fails.
+    private static func residentFootprintBytes() -> Int {
+        var info = task_vm_info_data_t()
+        var count = mach_msg_type_number_t(
+            MemoryLayout<task_vm_info_data_t>.size / MemoryLayout<integer_t>.size)
+        let result = withUnsafeMutablePointer(to: &info) { pointer in
+            pointer.withMemoryRebound(to: integer_t.self, capacity: Int(count)) { reboundPointer in
+                task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), reboundPointer, &count)
+            }
+        }
+        guard result == KERN_SUCCESS else { return 0 }
+        return Int(clamping: info.phys_footprint)
     }
 }

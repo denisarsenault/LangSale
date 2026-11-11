@@ -1,0 +1,113 @@
+{
+  "version": "whisper-base-0f63a780",
+  "entries": [
+    {
+      "fileName": "openai_whisper-base/AudioEncoder.mlmodelc/analytics/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/AudioEncoder.mlmodelc/analytics/coremldata.bin",
+      "expectedBytes": 243,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/AudioEncoder.mlmodelc/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/AudioEncoder.mlmodelc/coremldata.bin",
+      "expectedBytes": 347,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/AudioEncoder.mlmodelc/metadata.json",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/AudioEncoder.mlmodelc/metadata.json",
+      "expectedBytes": 1863,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/AudioEncoder.mlmodelc/model.mil",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/AudioEncoder.mlmodelc/model.mil",
+      "expectedBytes": 579125,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/AudioEncoder.mlmodelc/weights/weight.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/AudioEncoder.mlmodelc/weights/weight.bin",
+      "expectedBytes": 41189632,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/MelSpectrogram.mlmodelc/analytics/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/MelSpectrogram.mlmodelc/analytics/coremldata.bin",
+      "expectedBytes": 243,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/MelSpectrogram.mlmodelc/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/MelSpectrogram.mlmodelc/coremldata.bin",
+      "expectedBytes": 328,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/MelSpectrogram.mlmodelc/metadata.json",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/MelSpectrogram.mlmodelc/metadata.json",
+      "expectedBytes": 1848,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/MelSpectrogram.mlmodelc/model.mil",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/MelSpectrogram.mlmodelc/model.mil",
+      "expectedBytes": 10176,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/MelSpectrogram.mlmodelc/weights/weight.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/MelSpectrogram.mlmodelc/weights/weight.bin",
+      "expectedBytes": 354080,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/TextDecoder.mlmodelc/analytics/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/TextDecoder.mlmodelc/analytics/coremldata.bin",
+      "expectedBytes": 243,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/TextDecoder.mlmodelc/coremldata.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/TextDecoder.mlmodelc/coremldata.bin",
+      "expectedBytes": 633,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/TextDecoder.mlmodelc/metadata.json",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/TextDecoder.mlmodelc/metadata.json",
+      "expectedBytes": 4753,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/TextDecoder.mlmodelc/model.mil",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/TextDecoder.mlmodelc/model.mil",
+      "expectedBytes": 205217,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/TextDecoder.mlmodelc/weights/weight.bin",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/TextDecoder.mlmodelc/weights/weight.bin",
+      "expectedBytes": 104122162,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/config.json",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/config.json",
+      "expectedBytes": 1464,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/generation_config.json",
+      "remoteURL": "https://huggingface.co/argmaxinc/whisperkit-coreml/resolve/0f63a7800b00dd0226abd051b906c246e1907482/openai_whisper-base/generation_config.json",
+      "expectedBytes": 2762,
+      "status": "pending"
+    },
+    {
+      "fileName": "openai_whisper-base/tokenizer.json",
+      "remoteURL": "https://huggingface.co/openai/whisper-base/resolve/e37978b90ca9030d5170a5c07aadb050351a65bb/tokenizer.json",
+      "expectedBytes": 2480466,
+      "status": "pending"
+    }
+  ]
+}

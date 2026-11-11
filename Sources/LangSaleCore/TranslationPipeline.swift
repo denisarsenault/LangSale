@@ -28,17 +28,31 @@ public actor TranslationPipeline {
     public static let headroomBytes = 256 * 1024 * 1024
 
     private let recognizer: any SpeechRecognizing
-    private let translator: any Translating
+    /// Nil when the recognizer already returns English (e.g. Whisper's translate task),
+    /// in which case the recognized text is used as the translation.
+    private let translator: (any Translating)?
     private let memory: any MemoryProbe
     public let pair: LanguagePair
     private var loaded: Set<String> = []
 
-    public init(recognizer: any SpeechRecognizing, translator: any Translating,
+    public init(recognizer: any SpeechRecognizing, translator: (any Translating)?,
                 memory: any MemoryProbe, pair: LanguagePair) {
         self.recognizer = recognizer
         self.translator = translator
         self.memory = memory
         self.pair = pair
+    }
+
+    /// Loads every model this pipeline needs, checking the memory budget first.
+    ///
+    /// Call before audio capture starts so the first utterance is not held behind a
+    /// multi-second model load. `process` still loads lazily if this was skipped or
+    /// if `shedMemory` unloaded the models.
+    public func prepare() async throws {
+        try await ensureLoaded(recognizer)
+        if let translator {
+            try await ensureLoaded(translator)
+        }
     }
 
     /// Returns nil when the segment contains no recognizable speech.
@@ -48,6 +62,10 @@ public actor TranslationPipeline {
         let original = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !original.isEmpty else { return nil }
 
+        guard let translator else {
+            return Transcript(source: pair.source, target: pair.target,
+                              original: original, translated: original)
+        }
         try await ensureLoaded(translator)
         let translated = try await translator.translate(original, pair: pair)
         return Transcript(source: pair.source, target: pair.target,
@@ -57,7 +75,7 @@ public actor TranslationPipeline {
     /// Call on memory warnings. Unloads everything; the next segment reloads what it needs.
     public func shedMemory() async {
         await recognizer.unload()
-        await translator.unload()
+        await translator?.unload()
         loaded.removeAll()
     }
 
