@@ -1,0 +1,39 @@
+name: LangSale
+options:
+  bundleIdPrefix: com.langsale
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+packages:
+  LangSaleKit:
+    path: .
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    MARKETING_VERSION: "0.1.0"
+    # Bump on every commit that ships (see docs/ARCHITECTURE.md, Production releases).
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    # Set your Apple developer team ID here or in Xcode's Signing settings.
+    DEVELOPMENT_TEAM: ""
+    TARGETED_DEVICE_FAMILY: "1"
+
+targets:
+  LangSale:
+    type: application
+    platform: iOS
+    sources:
+      - path: LangSaleApp
+    dependencies:
+      - package: LangSaleKit
+        product: LangSaleCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.langsale.app
+        PRODUCT_NAME: LangSale
+        INFOPLIST_FILE: LangSaleApp/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
