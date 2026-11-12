@@ -9,26 +9,53 @@
 /* Begin PBXBuildFile section */
 		127CB4C71FABA62A78208D65 /* SpeechModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6896A7A6BF9E799C98A7B4C /* SpeechModelStore.swift */; };
 		32935BE8BF3F408A9FD42D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC27855C27A52DC8E9D0921 /* Assets.xcassets */; };
+		3D5F007B8754E04D3926C0B0 /* SpeechModelStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB2BCBB790B20B790D5D5F /* SpeechModelStoreTests.swift */; };
+		4294108D4E812F9B1399FA83 /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FDEB410155E8644C709107 /* AppModelTests.swift */; };
 		700FF2A35034EC018D4AF987 /* WhisperKitRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */; };
+		70F50AD62253FA90E730F963 /* WhisperKitRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2343730B5ACF5D07F48AE14E /* WhisperKitRecognizerTests.swift */; };
 		79CA7F9D6062A16EF2AF87B3 /* whisper-base.manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = A38F71036BC9FCF55057546E /* whisper-base.manifest.json */; };
 		A238BCEF15244DFEF60D8FA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612A87C44C46DB8CF0C8BF4D /* ContentView.swift */; };
 		BFE365A7CCABE6A4F0D1AF28 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175B236CEE0CA61AE77EE4A /* AppModel.swift */; };
 		CB84EBB4F8328F95E45E92D3 /* LangSaleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451843A55EDB60114455072 /* LangSaleApp.swift */; };
+		D00F4F942F29A9092C2551B6 /* LangSaleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EB6F8143A9DF7B9DA6C322 /* LangSaleUITests.swift */; };
 		E9767FAD6595FC5600221546 /* LangSaleCore in Frameworks */ = {isa = PBXBuildFile; productRef = 39DE9E3BF9A982C7717548EE /* LangSaleCore */; };
 		EFBD98D6624E578B281AD169 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7A96D144CB47C8CDDF102F4F /* WhisperKit */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		51C318E8B516D8BE94ABACCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50465CF0AFD21AAE39E61E52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE6C9029C08712CFA30175FA;
+			remoteInfo = LangSale;
+		};
+		8C778C84191CE66242400F99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50465CF0AFD21AAE39E61E52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE6C9029C08712CFA30175FA;
+			remoteInfo = LangSale;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		16FDEB410155E8644C709107 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		1804A76AD62450010624F5E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1FB79C9289B18CA223C0DAF7 /* LangSale.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LangSale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175B236CEE0CA61AE77EE4A /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2343730B5ACF5D07F48AE14E /* WhisperKitRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitRecognizerTests.swift; sourceTree = "<group>"; };
 		3FC27855C27A52DC8E9D0921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitRecognizer.swift; sourceTree = "<group>"; };
 		612A87C44C46DB8CF0C8BF4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8451843A55EDB60114455072 /* LangSaleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSaleApp.swift; sourceTree = "<group>"; };
+		91EB6F8143A9DF7B9DA6C322 /* LangSaleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSaleUITests.swift; sourceTree = "<group>"; };
+		93EB2BCBB790B20B790D5D5F /* SpeechModelStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechModelStoreTests.swift; sourceTree = "<group>"; };
+		95B91D50BF8C79CC60A94017 /* LangSaleTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LangSaleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38F71036BC9FCF55057546E /* whisper-base.manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "whisper-base.manifest.json"; sourceTree = "<group>"; };
 		B3D8A814B3DC0892F0F41B72 /* LangSale */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LangSale; path = .; sourceTree = SOURCE_ROOT; };
 		B6896A7A6BF9E799C98A7B4C /* SpeechModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechModelStore.swift; sourceTree = "<group>"; };
+		FE2A5B1F1C6F59845F322192 /* LangSaleUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LangSaleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,12 +71,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1202AF162D463DAE42C144A3 /* LangSaleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				91EB6F8143A9DF7B9DA6C322 /* LangSaleUITests.swift */,
+			);
+			path = LangSaleUITests;
+			sourceTree = "<group>";
+		};
 		1FF8EBA3110F476179EF558B /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				1FB79C9289B18CA223C0DAF7 /* LangSale.app */,
+				95B91D50BF8C79CC60A94017 /* LangSaleTests.xctest */,
+				FE2A5B1F1C6F59845F322192 /* LangSaleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		236A5F21AE84C7CFDBF4E00A /* LangSaleAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				16FDEB410155E8644C709107 /* AppModelTests.swift */,
+				93EB2BCBB790B20B790D5D5F /* SpeechModelStoreTests.swift */,
+				2343730B5ACF5D07F48AE14E /* WhisperKitRecognizerTests.swift */,
+			);
+			path = LangSaleAppTests;
 			sourceTree = "<group>";
 		};
 		34063771842664AD618EA8FD /* LangSaleApp */ = {
@@ -71,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				34063771842664AD618EA8FD /* LangSaleApp */,
+				236A5F21AE84C7CFDBF4E00A /* LangSaleAppTests */,
+				1202AF162D463DAE42C144A3 /* LangSaleUITests */,
 				C07A4037151DEDEA8ACB8A18 /* Packages */,
 				1FF8EBA3110F476179EF558B /* Products */,
 			);
@@ -95,6 +144,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		615F1435C4EC8CAE9B38C786 /* LangSaleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 273726C8D1729F8E163B7E78 /* Build configuration list for PBXNativeTarget "LangSaleUITests" */;
+			buildPhases = (
+				0876817DFF706D5484F48273 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5CB345E3E94CBCCC81C8641A /* PBXTargetDependency */,
+			);
+			name = LangSaleUITests;
+			packageProductDependencies = (
+			);
+			productName = LangSaleUITests;
+			productReference = FE2A5B1F1C6F59845F322192 /* LangSaleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		905F3525F6156DA0760EC7EF /* LangSaleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D8247F4026B175F7E57F99 /* Build configuration list for PBXNativeTarget "LangSaleTests" */;
+			buildPhases = (
+				387A762B012A82D60A7E2AFB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34C0308395008B9C2460B44C /* PBXTargetDependency */,
+			);
+			name = LangSaleTests;
+			packageProductDependencies = (
+			);
+			productName = LangSaleTests;
+			productReference = 95B91D50BF8C79CC60A94017 /* LangSaleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE6C9029C08712CFA30175FA /* LangSale */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14E1EE6F84BF82D8D1E2E2B2 /* Build configuration list for PBXNativeTarget "LangSale" */;
@@ -125,6 +210,15 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					615F1435C4EC8CAE9B38C786 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+						TestTargetID = CE6C9029C08712CFA30175FA;
+					};
+					905F3525F6156DA0760EC7EF = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
 					CE6C9029C08712CFA30175FA = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
@@ -150,6 +244,8 @@
 			projectRoot = "";
 			targets = (
 				CE6C9029C08712CFA30175FA /* LangSale */,
+				905F3525F6156DA0760EC7EF /* LangSaleTests */,
+				615F1435C4EC8CAE9B38C786 /* LangSaleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +263,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0876817DFF706D5484F48273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00F4F942F29A9092C2551B6 /* LangSaleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		387A762B012A82D60A7E2AFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4294108D4E812F9B1399FA83 /* AppModelTests.swift in Sources */,
+				3D5F007B8754E04D3926C0B0 /* SpeechModelStoreTests.swift in Sources */,
+				70F50AD62253FA90E730F963 /* WhisperKitRecognizerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D32C491270FA3AED1D869B0D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,6 +294,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34C0308395008B9C2460B44C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE6C9029C08712CFA30175FA /* LangSale */;
+			targetProxy = 51C318E8B516D8BE94ABACCF /* PBXContainerItemProxy */;
+		};
+		5CB345E3E94CBCCC81C8641A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE6C9029C08712CFA30175FA /* LangSale */;
+			targetProxy = 8C778C84191CE66242400F99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0F9E29BAEADAC13220B094C5 /* Debug */ = {
@@ -266,6 +393,74 @@
 				PRODUCT_NAME = LangSale;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		67ED238AA1F5C4A0377726CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.langsale.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LangSale.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LangSale";
+			};
+			name = Debug;
+		};
+		78BA9380FB0989C6C7CA005E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.langsale.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LangSale;
+			};
+			name = Release;
+		};
+		881A5B667E44EC66B3B17AC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.langsale.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LangSale.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LangSale";
+			};
+			name = Release;
+		};
+		934804E80DA176C200ED4646 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.langsale.app.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LangSale;
 			};
 			name = Debug;
 		};
@@ -357,6 +552,24 @@
 			buildConfigurations = (
 				1883EC864FE21C77BABDBC81 /* Debug */,
 				E4B8567AB7CD9B7229BEEED2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		18D8247F4026B175F7E57F99 /* Build configuration list for PBXNativeTarget "LangSaleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67ED238AA1F5C4A0377726CD /* Debug */,
+				881A5B667E44EC66B3B17AC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		273726C8D1729F8E163B7E78 /* Build configuration list for PBXNativeTarget "LangSaleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				934804E80DA176C200ED4646 /* Debug */,
+				78BA9380FB0989C6C7CA005E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -42,3 +42,43 @@ targets:
         INFOPLIST_FILE: LangSaleApp/Info.plist
         GENERATE_INFOPLIST_FILE: NO
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+  LangSaleTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: LangSaleAppTests
+    dependencies:
+      - target: LangSale
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.langsale.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/LangSale.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LangSale"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+  LangSaleUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: LangSaleUITests
+    dependencies:
+      - target: LangSale
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.langsale.app.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: LangSale
+
+schemes:
+  LangSale:
+    build:
+      targets:
+        LangSale: all
+        LangSaleTests: [test]
+        LangSaleUITests: [test]
+    test:
+      config: Debug
+      targets:
+        - LangSaleTests
+        - LangSaleUITests

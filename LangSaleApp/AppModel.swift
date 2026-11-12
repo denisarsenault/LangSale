@@ -1,3 +1,14 @@
+//
+//  AppModel.swift
+//  LangSale
+//
+//
+//  Created by Denis Arsenault on 11/11/26.
+//
+//
+
+
+
 import AVFoundation
 import LangSaleCore
 import Observation

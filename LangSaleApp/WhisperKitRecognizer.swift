@@ -1,3 +1,12 @@
+//
+//  WhisperKitRecognizere.swift
+//  LangSale
+//
+//
+//  Created by Denis Arsenault on 11/11/26.
+//
+//
+
 import Foundation
 import LangSaleCore
 import WhisperKit
