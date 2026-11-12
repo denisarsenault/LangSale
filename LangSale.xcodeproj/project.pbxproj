@@ -48,6 +48,8 @@
 		3FC27855C27A52DC8E9D0921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BF8C2889857D745FB26BEF0 /* WhisperKitRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitRecognizer.swift; sourceTree = "<group>"; };
 		612A87C44C46DB8CF0C8BF4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7F31C20D30A67E1B002E7B89 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
+		7F31C20F30A67EAB002E7B89 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
 		8451843A55EDB60114455072 /* LangSaleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSaleApp.swift; sourceTree = "<group>"; };
 		91EB6F8143A9DF7B9DA6C322 /* LangSaleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSaleUITests.swift; sourceTree = "<group>"; };
 		93EB2BCBB790B20B790D5D5F /* SpeechModelStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechModelStoreTests.swift; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		8D9C874F4DCD5EE050D7A445 = {
 			isa = PBXGroup;
 			children = (
+				7F31C20F30A67EAB002E7B89 /* ARCHITECTURE.md */,
+				7F31C20D30A67E1B002E7B89 /* ReadMe.md */,
 				34063771842664AD618EA8FD /* LangSaleApp */,
 				236A5F21AE84C7CFDBF4E00A /* LangSaleAppTests */,
 				1202AF162D463DAE42C144A3 /* LangSaleUITests */,
