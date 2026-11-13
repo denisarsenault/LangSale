@@ -58,7 +58,7 @@ public actor TranslationPipeline {
     /// Returns nil when the segment contains no recognizable speech.
     public func process(segment pcm: [Float]) async throws -> Transcript? {
         try await ensureLoaded(recognizer)
-        let raw = try await recognizer.transcribe(pcm, language: pair.source)
+        let raw = try await recognizer.transcribe(pcm, pair: pair)
         let original = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !original.isEmpty else { return nil }
 

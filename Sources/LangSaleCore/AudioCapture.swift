@@ -34,6 +34,15 @@ public final class AudioCapture: @unchecked Sendable {
         engine.stop()
         processor = nil
     }
+
+    /// Stops delivering audio while the app plays speech, so the microphone does not hear the app's own voice.
+    public func pause() {
+        engine.pause()
+    }
+
+    public func resume() throws {
+        try engine.start()
+    }
 }
 
 final class TapProcessor: @unchecked Sendable {

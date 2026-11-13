@@ -14,8 +14,9 @@ public protocol ManagedModel: Sendable {
 }
 
 public protocol SpeechRecognizing: ManagedModel {
-    /// `pcm` is 16 kHz mono Float32.
-    func transcribe(_ pcm: [Float], language: Language) async throws -> String
+    /// `pcm` is 16 kHz mono Float32. The recognizer produces text in `pair.source`, or in English
+    /// when `pair.target` is English and the model can translate directly.
+    func transcribe(_ pcm: [Float], pair: LanguagePair) async throws -> String
 }
 
 public protocol Translating: ManagedModel {

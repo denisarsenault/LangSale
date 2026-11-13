@@ -174,7 +174,7 @@ actor FakeRecognizer: SpeechRecognizing {
 
     func load() async throws { isLoaded = true }
     func unload() async { isLoaded = false }
-    func transcribe(_ pcm: [Float], language: Language) async throws -> String { text }
+    func transcribe(_ pcm: [Float], pair: LanguagePair) async throws -> String { text }
 }
 
 actor FakeTranslator: Translating {
@@ -219,6 +219,28 @@ struct TranslationPipelineTests {
         let result = try await pipeline.process(segment: [0.1])
         #expect(result?.translated == "hello there")
         #expect(result?.original == "hello there")
+    }
+
+    @Test func englishToSpanishUsesTranslatorOutput() async throws {
+        let englishPair = LanguagePair(source: .english, target: .spanish)
+        let pipeline = TranslationPipeline(
+            recognizer: FakeRecognizer(text: "Do you have this in a larger size?", footprint: 100),
+            translator: FakeTranslator(),
+            memory: FixedMemory(bytes: Int.max),
+            pair: englishPair)
+        let result = try await pipeline.process(segment: [0.1])
+        #expect(result?.source == .english)
+        #expect(result?.target == .spanish)
+        #expect(result?.original == "Do you have this in a larger size?")
+        #expect(result?.translated == "EN: Do you have this in a larger size?")
+    }
+
+    @Test func firstReleaseDirectionsNeedTranslationOnlyForNonEnglishTargets() {
+        let needs = LanguagePair.firstRelease.filter(\.needsTranslationModel)
+        #expect(needs.allSatisfy { $0.target != .english })
+        #expect(needs.map(\.target).contains(.spanish))
+        #expect(needs.map(\.target).contains(.portuguese))
+        #expect(LanguagePair.firstRelease.first == LanguagePair(source: .english, target: .spanish))
     }
 
     @Test func emptyRecognitionYieldsNoTranscript() async throws {

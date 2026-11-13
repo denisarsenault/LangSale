@@ -26,10 +26,21 @@ public struct LanguagePair: Codable, Sendable, Hashable {
         self.target = target
     }
 
-    /// First-release sources. Target defaults to English until product confirms otherwise.
+    /// Directions offered in the first release, listed in the order the picker shows them.
+    ///
+    /// English → Spanish and English → Portuguese use Apple's on-device Translation framework and speak
+    /// the result aloud. The Spanish, Portuguese, and Haitian Creole → English directions use Whisper's
+    /// translate task and need no translation model.
     public static let firstRelease: [LanguagePair] = [
+        LanguagePair(source: .english, target: .spanish),
+        LanguagePair(source: .english, target: .portuguese),
         LanguagePair(source: .spanish, target: .english),
         LanguagePair(source: .portuguese, target: .english),
         LanguagePair(source: .haitianCreole, target: .english),
     ]
+
+    /// True when this direction's output comes from a translation model rather than Whisper's translate task.
+    public var needsTranslationModel: Bool {
+        target != .english
+    }
 }
