@@ -13,9 +13,9 @@ import WhisperKit
 
 /// Speech recognizer backed by WhisperKit's `whisper-base` Core ML model.
 ///
-/// Uses Whisper's translate task, so the output is English regardless of the source language
-/// (Spanish, Portuguese, or Haitian Creole). The pipeline therefore runs without a separate
-/// translation model.
+/// For directions into English, Whisper's translate task produces English directly from Spanish,
+/// Portuguese, or Haitian Creole speech. For English-source directions, it transcribes the English,
+/// and `AppleTranslator` translates the text.
 ///
 /// Loads from a local folder only (`download: false`). The model files are placed there by
 /// `ModelDownloader`, so the app never fetches from Hugging Face at runtime.
@@ -52,11 +52,14 @@ actor WhisperKitRecognizer: SpeechRecognizing {
         whisper = nil
     }
 
-    func transcribe(_ pcm: [Float], language: Language) async throws -> String {
+    func transcribe(_ pcm: [Float], pair: LanguagePair) async throws -> String {
         guard let whisper else {
             throw ModelError.inferenceFailed(model: name, reason: "Model is not loaded")
         }
-        let options = DecodingOptions(task: .translate, language: language.rawValue)
+        // Translate to English when English is the target (Spanish, Portuguese, Creole → English).
+        // Otherwise transcribe in the source language; a translation model handles the rest.
+        let task: DecodingTask = pair.target == .english ? .translate : .transcribe
+        let options = DecodingOptions(task: task, language: pair.source.rawValue)
         let results = await whisper.transcribe(audioArrays: [pcm], decodeOptions: options)
         guard let segments = results.first ?? nil else {
             throw ModelError.inferenceFailed(model: name, reason: "Transcription returned no result")

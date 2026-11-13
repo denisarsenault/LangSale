@@ -12,6 +12,7 @@
 import AVFoundation
 import LangSaleCore
 import Observation
+import Translation
 import UIKit
 
 /// Owns the on-device pipeline for the UI. Everything here runs on the main actor;
@@ -36,7 +37,22 @@ final class AppModel {
     private(set) var peers: [String] = []
     private(set) var lastError: String?
 
-    var pair: LanguagePair = LanguagePair.firstRelease[0]
+    var pair: LanguagePair = LanguagePair.firstRelease[0] {
+        didSet { updateTranslationConfiguration() }
+    }
+
+    /// Set for directions that use Apple's translation (English → Spanish or Portuguese). ContentView
+    /// hosts the SwiftUI translation task that serves it; nil for directions that need no translation model.
+    private(set) var translationConfiguration: TranslationSession.Configuration?
+
+    /// Serves English → other-language translation. Exposed so ContentView can host its translation task.
+    let appleTranslator = AppleTranslator()
+    private let speechPlayer = SpeechPlayer()
+
+    /// Loudness of the spoken translation, from 0 to 1. Applies to the next utterance.
+    var speechVolume: Float = 1.0 {
+        didSet { speechPlayer.volume = speechVolume }
+    }
 
     var isRunning: Bool { status != .idle }
 
@@ -66,6 +82,11 @@ final class AppModel {
             Task { [weak self] in
                 await self?.prepareModel()
             }
+        }
+        updateTranslationConfiguration()
+        // Resume listening once the translated speech finishes, so the microphone never hears the app's own voice.
+        speechPlayer.onIdle = { [weak self] in
+            try? self?.capture?.resume()
         }
         memoryObserver = NotificationCenter.default.addObserver(
             forName: UIApplication.didReceiveMemoryWarningNotification, object: nil, queue: .main
@@ -99,10 +120,11 @@ final class AppModel {
             return
         }
 
-        // Whisper's translate task returns English, so no separate translation model is needed.
+        // Directions into English use Whisper's translate task and need no translator. English → other
+        // languages transcribe English with Whisper, then translate with Apple's framework.
         let pipeline = TranslationPipeline(
             recognizer: recognizer,
-            translator: nil,
+            translator: pair.needsTranslationModel ? appleTranslator : nil,
             memory: SystemMemoryProbe(),
             pair: pair)
 
@@ -145,6 +167,7 @@ final class AppModel {
 
     func stop() async {
         guard status != .idle else { return }
+        speechPlayer.stop()
         capture?.stop()
         capture = nil
 
@@ -213,7 +236,9 @@ final class AppModel {
     private nonisolated static func activateAudioSession() async throws {
         try await Task.detached(priority: .userInitiated) {
             let audio = AVAudioSession.sharedInstance()
-            try audio.setCategory(.record, mode: .measurement, options: [])
+            // Recording and playback: the app listens, then speaks the translation through the speaker.
+            // Default mode, not measurement: measurement turns off output processing and plays quietly.
+            try audio.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
             try audio.setActive(true)
         }.value
     }
@@ -234,8 +259,33 @@ final class AppModel {
                 transcripts.removeLast(transcripts.count - transcriptLimit)
             }
             try? share.share(transcript)
+            if transcript.target != .english {
+                // Pause capture while the translation plays, so the microphone does not record it.
+                capture?.pause()
+                speechPlayer.speak(transcript.translated, language: transcript.target)
+            }
         case .error(let message):
             lastError = message
+        }
+    }
+
+    private func updateTranslationConfiguration() {
+        guard pair.needsTranslationModel, let target = Self.translationLocale(for: pair.target) else {
+            translationConfiguration = nil
+            return
+        }
+        translationConfiguration = TranslationSession.Configuration(
+            source: Locale.Language(identifier: Language.english.rawValue),
+            target: target)
+    }
+
+    /// The Apple Translation locale for a target language, or nil when the framework does not support it.
+    private static func translationLocale(for language: Language) -> Locale.Language? {
+        switch language {
+        case .spanish, .portuguese, .english:
+            Locale.Language(identifier: language.rawValue)
+        case .haitianCreole:
+            nil
         }
     }
 

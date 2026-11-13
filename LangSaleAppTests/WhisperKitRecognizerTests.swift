@@ -10,7 +10,8 @@ struct WhisperKitRecognizerTests {
     @Test func transcribeBeforeLoadThrows() async {
         let recognizer = WhisperKitRecognizer(modelFolder: missingFolder)
         await #expect(throws: ModelError.self) {
-            _ = try await recognizer.transcribe([0.0, 0.1], language: .spanish)
+            _ = try await recognizer.transcribe([0.0, 0.1],
+                                                pair: LanguagePair(source: .spanish, target: .english))
         }
     }
 

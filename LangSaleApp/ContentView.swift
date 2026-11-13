@@ -9,6 +9,7 @@
 
 import LangSaleCore
 import SwiftUI
+import Translation
 
 struct ContentView: View {
     @State private var model: AppModel
@@ -58,6 +59,15 @@ struct ContentView: View {
                     }
                     .disabled(model.status == .starting)
 
+                    HStack {
+                        Image(systemName: "speaker.wave.1")
+                            .foregroundStyle(.secondary)
+                        Slider(value: $model.speechVolume, in: 0...1)
+                            .accessibilityLabel("Speech volume")
+                        Image(systemName: "speaker.wave.3")
+                            .foregroundStyle(.secondary)
+                    }
+
                     switch model.status {
                     case .loadingModel:
                         ProgressView("Loading speech model…")
@@ -105,6 +115,11 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("LangSale")
+        }
+        // Hosts Apple's translation session for English → other-language directions. SwiftUI runs this
+        // task whenever the configuration changes; it does nothing when the configuration is nil.
+        .translationTask(model.translationConfiguration) { session in
+            await model.appleTranslator.serve(session)
         }
     }
 }

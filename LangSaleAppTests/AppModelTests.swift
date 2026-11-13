@@ -6,10 +6,24 @@ import Testing
 @MainActor
 @Suite("AppModel")
 struct AppModelTests {
-    @Test func defaultDirectionIsFirstReleasePair() {
+    @Test func defaultDirectionIsEnglishToSpanish() {
         let model = AppModel.preview()
-        #expect(model.pair == LanguagePair.firstRelease[0])
-        #expect(model.pair.target == .english)
+        #expect(model.pair == LanguagePair(source: .english, target: .spanish))
+        #expect(model.translationConfiguration != nil)
+    }
+
+    @Test func englishToEnglishTargetsNeedNoTranslationSession() {
+        let model = AppModel.preview()
+        model.pair = LanguagePair(source: .spanish, target: .english)
+        #expect(model.translationConfiguration == nil)
+        model.pair = LanguagePair(source: .english, target: .portuguese)
+        #expect(model.translationConfiguration != nil)
+    }
+
+    @Test func creoleTargetHasNoTranslationSession() {
+        let model = AppModel.preview()
+        model.pair = LanguagePair(source: .english, target: .haitianCreole)
+        #expect(model.translationConfiguration == nil)
     }
 
     @Test func startIsRefusedWhileModelIsDownloading() async {
